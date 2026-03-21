@@ -116,3 +116,6 @@ modifying any files on disk.
 
 Free to use, modify, and distribute. No warranty provided.
 BepInEx is licensed under LGPL-2.1 — see BepInEx LICENSE file.
+
+<img width="2048" height="574" alt="image" src="https://github.com/user-attachments/assets/db52c0e9-a486-4835-b89c-a7ad3cb035e6" />
+
