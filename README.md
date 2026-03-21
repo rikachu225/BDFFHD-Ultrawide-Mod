@@ -5,6 +5,8 @@ Ultrawide support for **Bravely Default: Flying Fairy HD Remaster** on PC (Steam
 Removes black bars and renders the game at your monitor's native resolution.
 Works with 21:9, 32:9, and any custom aspect ratio.
 
+<img width="2048" height="574" alt="image" src="https://github.com/user-attachments/assets/db52c0e9-a486-4835-b89c-a7ad3cb035e6" />
+
 ---
 
 ## Choose Your Install Method
@@ -116,6 +118,4 @@ modifying any files on disk.
 
 Free to use, modify, and distribute. No warranty provided.
 BepInEx is licensed under LGPL-2.1 — see BepInEx LICENSE file.
-
-<img width="2048" height="574" alt="image" src="https://github.com/user-attachments/assets/db52c0e9-a486-4835-b89c-a7ad3cb035e6" />
 
