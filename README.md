@@ -94,6 +94,8 @@ Works with 21:9, 32:9, and any custom aspect ratio.
 - Make sure you launched once after installing BepInEx (it needs to initialize)
 - Check `BepInEx\LogOutput.log` for error details
 - Try removing the mod DLL, launching vanilla, then re-adding it
+- **If using a manually installed BepInEx:** Make sure you have the Bleeding Edge build 755+, not an older pre-release. Download from [builds.bepinex.dev](https://builds.bepinex.dev/projects/bepinex_be). Older builds (like `v6.0.0-pre.2`) are incompatible with Unity 6.
+- **If BepInEx loads but the game freezes:** Open `BepInEx\config\BepInEx.cfg` and set `UnityLogListening = false` under `[Logging.Unity]`. This is required for Unity 6 games. The OneClick installer does this automatically.
 
 **Windows SmartScreen warning on the .exe:**
 - This is normal for community tools. Click "More info" → "Run anyway"
@@ -110,7 +112,7 @@ modifying any files on disk.
 
 ## Credits
 
-- Built with [BepInEx 6](https://github.com/BepInEx/BepInEx) and [Harmony](https://github.com/pardeike/Harmony)
+- Built with [BepInEx 6 Bleeding Edge](https://builds.bepinex.dev/projects/bepinex_be) and [Harmony](https://github.com/pardeike/Harmony)
 - Created by the community for the community
 - Special thanks to r/bravelydefault
 

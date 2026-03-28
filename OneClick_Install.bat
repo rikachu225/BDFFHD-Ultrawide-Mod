@@ -64,7 +64,7 @@ if exist "!GAME_DIR!\BepInEx\core\BepInEx.Core.dll" (
 )
 
 :: ─── Download BepInEx ───────────────────────────────────────────
-echo   [1/3] Downloading BepInEx 6 (Unity IL2CPP, win-x64)...
+echo   [1/4] Downloading BepInEx 6 BE (Unity IL2CPP, win-x64)...
 echo.
 
 :: Check for curl (built into Windows 10+)
@@ -77,8 +77,8 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
-:: Download latest BepInEx 6 BE for Unity IL2CPP
-set "BEPINEX_URL=https://github.com/BepInEx/BepInEx/releases/download/v6.0.0-pre.2/BepInEx-Unity.IL2CPP-win-x64-6.0.0-pre.2.zip"
+:: Download BepInEx 6 BE build 755 for Unity IL2CPP (required for Unity 6)
+set "BEPINEX_URL=https://builds.bepinex.dev/projects/bepinex_be/755/BepInEx-Unity.IL2CPP-win-x64-6.0.0-be.755%%2B3fab71a.zip"
 set "BEPINEX_ZIP=%TEMP%\bepinex_il2cpp.zip"
 
 curl -L -o "!BEPINEX_ZIP!" "!BEPINEX_URL!" 2>&1
@@ -86,14 +86,14 @@ if %errorlevel% neq 0 (
     echo.
     echo   [ERROR] Download failed. Check your internet connection.
     echo          You can also download BepInEx manually from:
-    echo          https://github.com/BepInEx/BepInEx/releases
-    echo          Get: BepInEx-Unity.IL2CPP-win-x64
+    echo          https://builds.bepinex.dev/projects/bepinex_be
+    echo          Get: BepInEx-Unity.IL2CPP-win-x64-6.0.0-be.755
     pause
     exit /b 1
 )
 
 echo.
-echo   [2/3] Extracting BepInEx to game folder...
+echo   [2/4] Extracting BepInEx to game folder...
 
 :: Extract using PowerShell (available on all modern Windows)
 powershell -NoProfile -Command "Expand-Archive -Path '!BEPINEX_ZIP!' -DestinationPath '!GAME_DIR!' -Force" 2>&1
@@ -111,6 +111,27 @@ del "!BEPINEX_ZIP!" 2>nul
 echo   [OK] BepInEx installed.
 echo.
 
+:: ─── Configure BepInEx for Unity 6 ───────────────────────────
+echo   [3/4] Configuring BepInEx for Unity 6 compatibility...
+
+:: Create config directory if needed
+if not exist "!GAME_DIR!\BepInEx\config" (
+    mkdir "!GAME_DIR!\BepInEx\config"
+)
+
+:: Write BepInEx.cfg with UnityLogListening disabled (required for Unity 6)
+(
+echo [Logging.Unity]
+echo.
+echo ## Enables listening to Unity log messages and converting them to BepInEx log entries.
+echo # Setting type: Boolean
+echo # Default value: true
+echo UnityLogListening = false
+) > "!GAME_DIR!\BepInEx\config\BepInEx.cfg"
+
+echo   [OK] BepInEx configured (UnityLogListening disabled).
+echo.
+
 :: ─── First-run: BepInEx needs to generate files ────────────────
 echo   [NOTE] BepInEx needs one game launch to initialize.
 echo          The game will start and may close automatically.
@@ -124,7 +145,7 @@ if not exist "!GAME_DIR!\BepInEx\plugins" (
 
 :: ─── Install the Ultrawide Mod ──────────────────────────────────
 :install_mod
-echo   [3/3] Installing Ultrawide Mod...
+echo   [4/4] Installing Ultrawide Mod...
 
 :: Get the directory where this script lives
 set "SCRIPT_DIR=%~dp0"
