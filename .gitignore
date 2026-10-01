@@ -20,3 +20,10 @@ Thumbs.db
 # Python
 venv/
 *.egg-info/
+
+# Release artifacts (published as GitHub Releases, not tracked)
+release/
+*.zip
+
+# Local dotnet tool manifest
+.config/
